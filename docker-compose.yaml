@@ -1,0 +1,61 @@
+version: "3"
+
+volumes:
+   data:
+   userpics:
+
+services:    
+    flask:
+      build: WebInterface/
+      container_name: flask
+      command: gunicorn --bind 0.0.0.0:8000 -w 4 app:app
+      environment:
+        - DB=db
+        - SECRET_KEY=
+      networks:
+        intranet:
+          aliases:
+            - flask-app
+        
+    nginx:
+      image: nginx:1.15
+      container_name: nginx
+      volumes:
+        - ./default.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - 80:80
+      networks:
+        - intranet
+      depends_on:
+        - flask
+
+    deserto:
+        build: deserto/
+        restart: always
+        environment:
+          - USER_MAIL=
+          - PASS_MAIL=
+          - ANTICAPTCHA_TOKEN=
+          - PROXY_GET_JSON_URL=
+          - URL_SELENOID=
+          - DB=db
+          - DB_PASSWORD=
+        depends_on:
+          - db
+        networks:
+          - intranet
+        volumes:
+          - userpics:/usr/src/app/userpics
+    
+    db:
+        image: postgres:latest
+        environment:
+            - POSTGRES_PASSWORD=
+        volumes:
+          - data:/var/lib/postgresql/data
+        networks:
+          - intranet
+        restart: always
+
+networks: 
+  intranet:

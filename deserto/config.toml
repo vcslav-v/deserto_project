@@ -1,0 +1,55 @@
+[common]
+img_extension = ['jpg', 'jpeg', 'png']
+
+[break]
+short = 0
+middle = 3
+long = 5
+for_wait = 120
+
+[path]
+userpic = '/Users/vcslav/Documents/YaD/Slava/code_projects/deserto/userpics'
+
+[person]
+locals = ['en', 'de', 'es_MX']
+gender = ['M', 'F']
+
+[mail]
+imap = 'imap.gmail.com'
+
+[anticaptcha]
+name = 'anticaptcha.crx'
+blank_url = 'https://antcpt.com/blank.html'
+
+[dribbble]
+    [dribbble.url]
+    main = 'https://dribbble.com/'
+    sign_in = 'https://dribbble.com/signup/new'
+    recent = 'https://dribbble.com/shots/recent'
+    profile = 'https://dribbble.com/account/profile'
+
+    [dribbble.regex]
+    email_confirm = '(http:\/\/email\.m\.dribbble.+?)"'
+    userpic = 'normal\/(.*)\?'
+
+    [dribbble.xpath]
+        [dribbble.xpath.sign_in]
+        checkbox = '//*[@id="new_user"]/div[5]/fieldset/label'
+        submit = '//input[@class="button form-sub"]'
+        check_done = '//*[@id="onboardingApp"]'
+        check_old_browser = '//*[contains(.,"Please upgrade to a supported browser")]'
+
+            [dribbble.xpath.sign_in.fields]
+            name = '//*[@id="user_name"]'
+            login = '//*[@id="user_login"]'
+            email = '//*[@id="user_email"]'
+            password = '//*[@id="user_password"]'
+
+        [dribbble.xpath.profile]
+        userpic_submit = '//input[@value="Upload Now"]'
+
+            [dribbble.xpath.profile.fields]
+            userpic_path = '//*[@type="file"]'
+
+        [dribbble.xpath.item]
+        like = '//a[@title="Like this shot"]'

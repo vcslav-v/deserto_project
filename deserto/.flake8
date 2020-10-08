@@ -1,0 +1,4 @@
+[flake8]
+ignore =
+  F403, S311, S403, S301, WPS400, WPS226
+exclude = alembic

@@ -1,0 +1,7 @@
+.venv
+.vscode
+*.pyc
+.python-version
+*egg-info
+full-docker-compose.yaml
+.DS_Store
