@@ -32,7 +32,8 @@ def make_user(task: models.Task):
 
         try:
             web_scripts.set_userpic(browser)
-        except Exception:
+        except Exception as e:
+            print(e)
             user.is_dribbble_set_pic = False
         else:
             user.is_dribbble_set_pic = True
