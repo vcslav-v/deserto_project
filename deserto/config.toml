@@ -8,7 +8,7 @@ long = 5
 for_wait = 120
 
 [path]
-userpic = '/Users/vcslav/Documents/YaD/Slava/code_projects/deserto/userpics'
+userpic = '/usr/src/app/userpics'
 
 [person]
 locals = ['en', 'de', 'es_MX']

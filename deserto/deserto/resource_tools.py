@@ -51,7 +51,6 @@ def get_userpic_path() -> str:
         path to userpic image
     """
     list_dir = os.listdir(config['path']['userpic'])
-    print(list_dir)
     if len(list_dir) < data_base.session.query(models.Person).count():
         download_new_user_pics()
         list_dir = os.listdir(config['path']['userpic'])
