@@ -11,6 +11,7 @@ services:
       command: gunicorn --bind 0.0.0.0:8000 -w 4 app:app
       environment:
         - DB=db
+        - DB_PASSWORD=
         - SECRET_KEY=
       networks:
         intranet:
