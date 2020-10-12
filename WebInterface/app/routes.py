@@ -38,3 +38,9 @@ def index():
         add_dribbble_form=add_dribbble_form,
         add_person_form=add_person_form
     )
+
+@app.route('/info')
+def info():
+    tasks = session.query(models.Task).all()
+    persons = session.query(models.Person).all()
+    return render_template('info.html', tasks=tasks, persons=persons)

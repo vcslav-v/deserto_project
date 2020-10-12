@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Deserto 0.1.0</h1>
+            <h2>Tasks</h2>
+        </div> 
+    </div>
+
+    <div class="row"></div>
+        <div class="col-md-4">
+            {% for task in tasks %}
+                {% include '_task.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Persons</h2>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            {% for person in persons %}
+                {% include '_person.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
