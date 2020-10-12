@@ -21,6 +21,7 @@ def get_soup(url: str) -> BeautifulSoup:
         beautiful soup
     """
     response = requests.get(config['dribbble']['url']['recent'])
+    print(response)
     return BeautifulSoup(response.text)
 
 
