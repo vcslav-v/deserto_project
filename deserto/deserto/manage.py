@@ -16,7 +16,8 @@ def main():
         scripts.like_and_comment(user, task)
     elif task.is_dribbble_reg:
         scripts.make_user(task)
-
+    if task.is_done():
+        data_base.session.delete(task)
     data_base.session.commit()
 
 
