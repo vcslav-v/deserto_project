@@ -33,9 +33,10 @@ def download_new_user_pics():  # noqa WPS210
         img_url = img_url.replace('mini', 'normal')
         print(img_url)
         names = re.search(config['dribbble']['regex']['userpic'], img_url)
+        print(names)
         if not names[1]:
             continue
-        print(names[1])
+        print(names)
 
         if not os.path.exists(config['path']['userpic']):
             os.mkdir(config['path']['userpic'])
