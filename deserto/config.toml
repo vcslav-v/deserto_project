@@ -30,7 +30,7 @@ blank_url = 'https://antcpt.com/blank.html'
 
     [dribbble.regex]
     email_confirm = '(http:\/\/email\.m\.dribbble.+?)"'
-    userpic = '^.*\/(.+$)'
+    userpic = '^.*\/(.+\.(png|jpg|jpeg))'
 
     [dribbble.xpath]
         [dribbble.xpath.sign_in]
