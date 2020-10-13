@@ -27,11 +27,13 @@ def get_soup(url: str) -> BeautifulSoup:
 def download_new_user_pics():  # noqa WPS210
     """Download user pics from dribbble."""
     soup = get_soup(config['dribbble']['url']['recent'])
-    print(soup)
     for a_tag in soup.find_all('a', attrs={'rel': 'contact'}):
+        print(a_tag)
         img_url = a_tag.img.attrs['src']
         img_url = img_url.replace('mini', 'normal')
+        print(img_url)
         names = re.search(config['dribbble']['regex']['userpic'], img_url)
+        print(names)
 
         if not os.path.exists(config['path']['userpic']):
             os.mkdir(config['path']['userpic'])
