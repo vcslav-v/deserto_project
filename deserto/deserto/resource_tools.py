@@ -21,14 +21,13 @@ def get_soup(url: str) -> BeautifulSoup:
         beautiful soup
     """
     response = requests.get(config['dribbble']['url']['recent'])
-    print(response)
     return BeautifulSoup(response.text)
 
 
 def download_new_user_pics():  # noqa WPS210
     """Download user pics from dribbble."""
     soup = get_soup(config['dribbble']['url']['recent'])
-
+    print(soup)
     for a_tag in soup.find_all('a', attrs={'rel': 'contact'}):
         img_url = a_tag.img.attrs['src']
         img_url = img_url.replace('mini', 'normal')
