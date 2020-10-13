@@ -50,11 +50,14 @@ def set_userpic(browser: web_browser.WebDriver):
         browser: with user cookies
     """
     browser.driver.get(dribbble_cfg['url']['profile'])
+    print('get')
     browser.fill_forms(
         dribbble_cfg['xpath']['profile']['fields'],
         userpic_path=resource_tools.get_userpic_path(),
     )
+    print('fill')
     browser.click(dribbble_cfg['xpath']['profile']['userpic_submit'])
+    print('click')
     sleep(config['break']['long'])
 
 
