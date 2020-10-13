@@ -40,7 +40,7 @@ def download_new_user_pics():  # noqa WPS210
 
         img = requests.get(img_url)
         with open(
-            os.path.join(config['path']['userpic'], names[0]),
+            os.path.join(config['path']['userpic'], names[1]),
             'wb',
         ) as image_file:
             image_file.write(img.content)
