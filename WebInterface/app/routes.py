@@ -32,9 +32,8 @@ def index():
 
 @app.route('/info')
 def info():
-    tasks = session.query(models.Task).all()
-    persons = session.query(models.Person).all()
-    return render_template('info.html', tasks=tasks, persons=persons)
+    queue = session.query(models.DribbbleQueue).all()
+    return render_template('info.html', queue=queue)
 
 
 @app.route('/delete-task/<task_id>')
