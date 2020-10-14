@@ -13,8 +13,8 @@ Base = declarative_base()
 association_table = Table(
     'association',
     Base.metadata,
-    Column('person_id', Integer, ForeignKey('person.id', ondelete="CASCADE"))),
-    Column('task_id', Integer, ForeignKey('task.id', ondelete="CASCADE"))),
+    Column('person_id', Integer, ForeignKey('person.id', ondelete="CASCADE")),
+    Column('task_id', Integer, ForeignKey('task.id', ondelete="CASCADE")),
 )
 
 
