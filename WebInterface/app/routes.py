@@ -3,7 +3,7 @@ import os
 from flask import flash, redirect, render_template, url_for
 
 from app import app, models, session
-from app.forms import AddDribbbleTaskForm, DeleteTask
+from app.forms import AddDribbbleTaskForm, AddFakePersonsForm
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -48,8 +48,32 @@ def delete_task(task_id):
     session.commit()
     return redirect(url_for('index'))
 
+
 @app.route('/update')
 def db_up():
     os.system('alembic revision --autogenerate')
     os.system('alembic upgrade head')
     return redirect(url_for('index'))
+
+
+@app.route('/admin')
+def admin():
+    add_person_form = AddFakePersonsForm()
+    tasks = session.query(models.Task).filter_by(is_dribbble_reg=True).all()
+    if add_person_form.validate_on_submit():
+        session.add(
+            models.Task(
+                counter=add_person_form.amount_persons.data,
+                is_dribbble_reg=True
+            )
+        )
+        session.commit()
+        print(add_person_form.amount_persons.data)
+        flash('Your changes have been saved.')
+        return redirect(url_for('index'))
+    return render_template(
+        'admin.html',
+        title='Deserto 0.1.0',
+        add_person_form=add_person_form,
+        tasks=tasks 
+    )

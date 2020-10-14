@@ -16,6 +16,3 @@ class AddFakePersonsForm(FlaskForm):
         'How much', validators=[DataRequired(), NumberRange(min=1, max=500)]
     )
     submit = SubmitField('Submit')
-
-class DeleteTask(FlaskForm):
-    submit = SubmitField('Delete')
