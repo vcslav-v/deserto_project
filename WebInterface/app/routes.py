@@ -39,9 +39,14 @@ def info():
 
 @app.route('/delete-task/<task_id>')
 def delete_task(task_id):
+    try:
+        task_id = int(task_id)
+    except:
+        return redirect(url_for('index'))
     task = session.query(models.Task).filter_by(id=task_id).first()
     session.delete(task)
     session.commit()
+    return redirect(url_for('index'))
 
 @app.route('/update')
 def db_up():
