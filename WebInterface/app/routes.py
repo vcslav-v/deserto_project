@@ -56,7 +56,7 @@ def db_up():
     return redirect(url_for('index'))
 
 
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
     add_person_form = AddFakePersonsForm()
     tasks = session.query(models.Task).filter_by(is_dribbble_reg=True).all()
