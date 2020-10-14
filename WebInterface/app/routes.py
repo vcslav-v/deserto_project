@@ -37,6 +37,12 @@ def info():
     return render_template('info.html', tasks=tasks, persons=persons)
 
 
+@app.route('/delete-task/<task_id>')
+def delete_task(task_id):
+    task = session.query(models.Task).filter_by(id=task_id).first()
+    session.delete(task)
+    session.commit()
+
 @app.route('/update')
 def db_up():
     os.system('alembic revision --autogenerate')
