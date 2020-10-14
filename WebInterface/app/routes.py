@@ -7,7 +7,7 @@ from app.forms import AddDribbbleTaskForm
 @app.route('/', methods=['GET', 'POST'])
 def index():
     add_dribbble_form = AddDribbbleTaskForm()
-    tasks = session.query(models.Task).filter_by(models.Task.is_liked_task is True).all()
+    tasks = session.query(models.Task).filter_by(models.Task.is_liked_task).all()
     if add_dribbble_form.validate_on_submit():
         session.add(
             models.Task(
