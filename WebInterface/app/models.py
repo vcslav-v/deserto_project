@@ -13,8 +13,8 @@ Base = declarative_base()
 association_table = Table(
     'association',
     Base.metadata,
-    Column('person_id', Integer, ForeignKey('person.id')),
-    Column('task_id', Integer, ForeignKey('task.id')),
+    Column('person_id', Integer, ForeignKey('person.id', ondelete="CASCADE")),
+    Column('task_id', Integer, ForeignKey('task.id', ondelete="CASCADE")),
 )
 
 
@@ -45,6 +45,7 @@ class Person(Base):
         'Task',
         secondary=association_table,
         back_populates='person',
+        cascade="all, delete",
     )
 
 

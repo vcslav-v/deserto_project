@@ -1,7 +1,9 @@
+import os
+
 from flask import flash, redirect, render_template, url_for
 
-from app import app, session, models
-from app.forms import AddDribbbleTaskForm
+from app import app, models, session
+from app.forms import AddDribbbleTaskForm, DeleteTask
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -33,3 +35,10 @@ def info():
     tasks = session.query(models.Task).all()
     persons = session.query(models.Person).all()
     return render_template('info.html', tasks=tasks, persons=persons)
+
+
+@app.route('/update')
+def db_up():
+    os.system('alembic revision --autogenerate')
+    os.system('alembic upgrade head')
+    return redirect(url_for('index'))

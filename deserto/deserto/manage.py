@@ -7,7 +7,6 @@ from deserto.dribbble import scripts
 
 def main():
     """Check tasks and up workers."""
-    #  data_base.up()
     data_base.update_queues()
     user, task = data_base.get_user_and_task()
     if not task:

@@ -13,10 +13,6 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 session = sessionmaker(bind=engine)()
 
 
-def up():
-    os.system('alembic upgrade d673+5')
-
-
 def make_fake_person() -> models.Person:
     """Make a fake person.
 

@@ -21,8 +21,8 @@ current_path = os.path.dirname(os.path.abspath(__file__))
 ROOT_PATH = os.path.join(current_path, '..')
 sys.path.append(ROOT_PATH)
 
-from deserto.data_base import engine
-from deserto.models import Base
+from app import engine
+from app.models import Base
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel

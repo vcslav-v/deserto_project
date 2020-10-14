@@ -1,18 +1,20 @@
 """SQLAlchemy models."""
 from datetime import datetime
 
-from sqlalchemy import (ARRAY, JSON, Boolean, Column, DateTime, ForeignKey, Integer,  # noqa I001
-                        String, Table)  # noqa WPS318
+from sqlalchemy import (ARRAY, JSON, Boolean, Column,
+                        DateTime, ForeignKey, Integer, String, Table)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
+
 Base = declarative_base()
+
 
 association_table = Table(
     'association',
     Base.metadata,
-    Column('person_id', Integer, ForeignKey('person.id')),
-    Column('task_id', Integer, ForeignKey('task.id')),
+    Column('person_id', Integer, ForeignKey('person.id', ondelete="CASCADE"))),
+    Column('task_id', Integer, ForeignKey('task.id', ondelete="CASCADE"))),
 )
 
 
@@ -43,6 +45,7 @@ class Person(Base):
         'Task',
         secondary=association_table,
         back_populates='person',
+        cascade="all, delete",
     )
 
 
