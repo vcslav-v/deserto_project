@@ -7,4 +7,4 @@ SQLALCHEMY_DATABASE_URI = (
     )
 )
 
-SECRET_KEY = environ.get('SECRET_KEY')
+SECRET_KEY = environ.get('SECRET_KEY') or 'secret'

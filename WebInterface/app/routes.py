@@ -1,13 +1,13 @@
 from flask import flash, redirect, render_template, url_for
 
 from app import app, session, models
-from app.forms import AddDribbbleTaskForm, AddFakePersonsForm
+from app.forms import AddDribbbleTaskForm
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     add_dribbble_form = AddDribbbleTaskForm()
-    add_person_form = AddFakePersonsForm()
+    # tasks = session.query(models.Task).filter_by(models.Task.is_liked_task is True).all()
     if add_dribbble_form.validate_on_submit():
         session.add(
             models.Task(
@@ -20,24 +20,13 @@ def index():
         flash('Your changes have been saved.')
         return redirect(url_for('index'))
 
-    if add_person_form.validate_on_submit():
-        session.add(
-            models.Task(
-                counter=add_person_form.amount_persons.data,
-                is_dribbble_reg=True
-            )
-        )
-        session.commit()
-        print(add_person_form.amount_persons.data)
-        flash('Your changes have been saved.')
-        return redirect(url_for('index'))
-
     return render_template(
         'index.html',
         title='Deserto 0.1.0',
         add_dribbble_form=add_dribbble_form,
-        add_person_form=add_person_form
+        # tasks=tasks
     )
+
 
 @app.route('/info')
 def info():

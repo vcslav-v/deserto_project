@@ -4,6 +4,8 @@
     {% if title %}{{ title }} - Deserto{% else %}Welcome to Deserto{% endif %}
 {% endblock %}
 
+{% block body_attribs %} class="bg-light"{% endblock body_attribs %}
+
 {% block content %}
     <div class="container">
         {% with messages = get_flashed_messages() %}
