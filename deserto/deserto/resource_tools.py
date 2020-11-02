@@ -21,7 +21,7 @@ def get_soup(url: str) -> BeautifulSoup:
         beautiful soup
     """
     response = requests.get(config['dribbble']['url']['recent'])
-    return BeautifulSoup(response.text)
+    return BeautifulSoup(response.text, features='html.parser')
 
 
 def download_new_user_pics():  # noqa WPS210
