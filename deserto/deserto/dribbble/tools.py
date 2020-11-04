@@ -87,10 +87,8 @@ def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
     browser.driver.get(
         dribbble_cfg['url']['main'] + user.login,
     )
-    self_name_title = dribbble_cfg['xpath']['profile']['title_name'].format(
-        name=user.name,
-    )
-    if browser.is_on_page_xpath(self_name_title):
+    xpath_check_session = dribbble_cfg['xpath']['new_session']['check_done']
+    if browser.is_on_page_xpath(xpath_check_session):
         return browser
 
     browser.driver.get(dribbble_cfg['url']['new_session'])
@@ -101,5 +99,5 @@ def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
     )
     browser.click(dribbble_cfg['xpath']['new_session']['submit'])
 
-    if browser.wait_xpath(dribbble_cfg['xpath']['new_session']['check_done']):
+    if browser.wait_xpath(xpath_check_session):
         return browser
