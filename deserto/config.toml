@@ -1,11 +1,13 @@
 [common]
 img_extension = ['jpg', 'jpeg', 'png']
+attempts = 3
 
 [break]
 short = 0
 middle = 3
 long = 5
 for_wait = 120
+real_users_rest = 300
 
 [path]
 userpic = '/usr/src/app/userpics'

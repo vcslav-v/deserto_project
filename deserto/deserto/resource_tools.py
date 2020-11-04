@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 
 from deserto import data_base, models
 from deserto.config import config
+from typing import List
 
 
 def get_soup(url: str) -> BeautifulSoup:
@@ -63,3 +64,26 @@ def get_userpic_path() -> str:
         list_dir,
     ))
     return os.path.join(config['path']['userpic'], choice(userpics_path))
+
+
+def get_dont_like_urls(source: str) -> List[str]:
+    """Find don't like products.
+
+    Parameters:
+        source: html page
+
+    Returns:
+        list unliked urls
+    """
+    soup = BeautifulSoup(source, features='html.parser')
+    shot_items = soup.find_all(
+        'li',
+        attrs={'class': 'shot-thumbnail js-shot-thumbnail shot-thumbnail-container'}, # noqa E501
+    )
+    urls = []
+    for shot in shot_items:
+        if shot.find('a', attrs={'data-primary-like': 'true'}):
+            urls.append(
+                config['dribbble']['url']['main'] + shot.a.attrs['href'],
+            )
+    return urls

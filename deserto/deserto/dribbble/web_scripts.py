@@ -1,6 +1,7 @@
 """Tools for dribbble."""
 
 from time import sleep
+from typing import List
 
 from deserto import (data_base, mail_tools,  # noqa I001
                      models, resource_tools, web_browser)  # noqa WPS318
@@ -73,3 +74,26 @@ def like(browser: web_browser.WebDriver, task: models.Task):
         task.counter += 1
     else:
         task.counter -= 1
+
+
+def get_unliked_shots(browser: web_browser.WebDriver) -> List[str]:
+    """Find unliked shots.
+
+     Parameters:
+        browser: ready for dribbble
+
+    Returns:
+        list of urls with unlike shots
+    """
+    browser.driver.get(dribbble_cfg['url']['recent'])
+    attempt = 0
+    attempts = config['common']['attempts']
+    while attempt < attempts:
+        urls = resource_tools.get_dont_like_urls(browser.driver.page_source())
+        if urls:
+            return urls
+        browser.driver.execute_script(
+            'window.scrollTo(0, document.body.scrollHeight);',
+        )
+        sleep(config['break']['long'])
+        attempt += 1

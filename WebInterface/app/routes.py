@@ -3,7 +3,7 @@ import os
 from flask import flash, redirect, render_template, url_for
 
 from app import app, models, session
-from app.forms import AddDribbbleTaskForm, AddFakePersonsForm
+from app.forms import AddDribbbleTaskForm, AddFakePersonsForm, AddRealPersonsForm
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -34,6 +34,30 @@ def index():
 # def secret():
 #     queue = session.query(models.DribbbleQueue).all()
 #     return render_template('secret.html', queue=queue)
+
+
+@app.route('/add-acc',  methods=['GET', 'POST'])
+def add_acc():
+    add_person_form = AddRealPersonsForm()
+    persons = session.query(models.Person).filter_by(is_fake=False).all()
+    if add_person_form.validate_on_submit():
+        session.add(
+            models.Person(
+                name=add_person_form.name.data,
+                login=add_person_form.login.data,
+                password=add_person_form.password.data,
+                is_fake=False,
+            )
+        )
+        session.commit()
+        flash('New user have been saved.')
+        return redirect(url_for('add_acc'))
+    return render_template(
+        'add_acc.html',
+        title='Deserto 0.1.0',
+        add_person_form=add_person_form,
+        persons=persons,
+    )
 
 
 @app.route('/info')

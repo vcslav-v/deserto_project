@@ -31,7 +31,7 @@ class Person(Base):
     gender = Column(String(length=1))
     user_agent = Column(String)
     cookies = Column(ARRAY(JSON), default=[])
-    last_activity = Column(DateTime, default=datetime.utcnow)
+    last_activity = Column(DateTime, default=datetime.utcnow())
     is_fake = Column(Boolean, default=True)
     is_dribbble_user = Column(Boolean, default=False)
     is_dribbble_email_confirm = Column(Boolean, default=False)

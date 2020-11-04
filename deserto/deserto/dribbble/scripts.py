@@ -31,8 +31,7 @@ def make_user(task: models.Task):
 
         try:
             web_scripts.set_userpic(browser)
-        except Exception as e:
-            print(e)
+        except Exception:
             user.is_dribbble_set_pic = False
         else:
             user.is_dribbble_set_pic = True
@@ -64,3 +63,21 @@ def like_and_comment(user: models.Person, task: models.Task):
     user.task.append(task)
     tools.save_cookies(user, browser.driver.get_cookies())
     browser.driver.close()
+
+
+def do_real_user_flow(user: models.Person):
+    """Real user live flow.
+
+    Parameters:
+        user: dribbble user
+    """
+    browser = tools.get_dribbble_ready_browser(user)
+    if not browser:
+        return
+    unliked_urls = web_scripts.get_unliked_shots(browser)
+    for url in unliked_urls:
+        task = models.Task(
+            url=url,
+            counter=1,
+        )
+        web_scripts.like(browser, task)

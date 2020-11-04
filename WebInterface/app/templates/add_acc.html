@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <h1>Deserto 0.1.0</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-4">
+            <h2>Add real users</h2>
+            {{ wtf.quick_form(add_person_form) }}
+        </div>
+
+        <div class="col-md-4">
+            <h2>Users</h2>
+            {% for person in persons %}
+                {% include '_person.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

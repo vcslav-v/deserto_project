@@ -1,13 +1,14 @@
 """Database tools."""
 
+from datetime import datetime, timedelta
 from random import choice
-import os
+
 from faker import Faker
 from sqlalchemy import create_engine
 from sqlalchemy.orm.session import sessionmaker
 
-from deserto import mail_tools, models
-from deserto.config import SQLALCHEMY_DATABASE_URI, USER_MAIL, config
+from deserto import config, mail_tools, models
+from deserto.config import SQLALCHEMY_DATABASE_URI, USER_MAIL
 
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 session = sessionmaker(bind=engine)()
@@ -78,3 +79,25 @@ def get_user_and_task():
         return (user, None)
 
     return (user, task)
+
+
+def get_real_user():
+    """Find real person.
+
+    Returns:
+        Person
+    """
+    user = session.query(
+        models.Person,
+    ).filter_by(
+        is_fake=False,
+    ).order_by(
+        models.Person.last_activity,
+    ).with_for_update().first()
+
+    rest_time = user.last_activity - datetime.utcnow()
+    wait_time = timedelta(minutes=config.config['break']['real_users_rest'])
+    if rest_time > wait_time:
+        user.last_activity = datetime.utcnow()
+        session.add(user)
+        return user
