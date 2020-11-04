@@ -89,7 +89,7 @@ def get_unliked_shots(browser: web_browser.WebDriver) -> List[str]:
     attempt = 0
     attempts = config['common']['attempts']
     while attempt < attempts:
-        urls = resource_tools.get_dont_like_urls(browser.driver.page_source())
+        urls = resource_tools.get_dont_like_urls(browser.driver.page_source)
         if urls:
             return urls
         browser.driver.execute_script(
