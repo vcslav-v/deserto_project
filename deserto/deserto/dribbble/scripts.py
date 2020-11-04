@@ -77,11 +77,12 @@ def do_real_user_flow(user: models.Person):
     if not browser:
         return
     unliked_urls = web_scripts.get_unliked_shots(browser)
-    for url in unliked_urls:
-        task = models.Task(
-            url=url,
-            counter=1,
-        )
-        web_scripts.like(browser, task)
+    if unliked_urls:
+        for url in unliked_urls:
+            task = models.Task(
+                url=url,
+                counter=1,
+            )
+            web_scripts.like(browser, task)
     user.last_activity = datetime.utcnow()
     data_base.session.add(user)
