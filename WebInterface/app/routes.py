@@ -67,6 +67,18 @@ def info():
     return render_template('info.html', queue=queue)
 
 
+@app.route('/delete-person/<person_id>')
+def delete_person(person_id):
+    try:
+        person_id = int(person_id)
+    except Exception:
+        return redirect(url_for('index'))
+    person = session.query(models.Person).filter_by(id=person_id).first()
+    session.delete(person)
+    session.commit()
+    return redirect(url_for('add_acc'))
+
+
 @app.route('/delete-task/<task_id>')
 def delete_task(task_id):
     try:
