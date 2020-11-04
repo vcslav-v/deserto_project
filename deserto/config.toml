@@ -51,7 +51,7 @@ blank_url = 'https://antcpt.com/blank.html'
 
         [dribbble.xpath.new_session]
         submit='//input[@class="button form-sub"]'
-        check_done='//img[@class="profile-avatar"]'
+        check_done='//span[@class="form-sub"][contains(.,"Upload")]'
 
             [dribbble.xpath.new_session.fields]
             login = '//input[@id="login"]'
