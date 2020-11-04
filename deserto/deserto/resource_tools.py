@@ -82,7 +82,7 @@ def get_dont_like_urls(source: str) -> List[str]:
     )
     urls = []
     for shot in shot_items:
-        if shot.find('a', attrs={'data-primary-like': 'true'}):
+        if shot.find('a', attrs={'data-primary-like': 'false'}):
             urls.append(
                 config['dribbble']['url']['main'] + shot.a.attrs['href'],
             )
