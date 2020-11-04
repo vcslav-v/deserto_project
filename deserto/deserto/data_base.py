@@ -88,6 +88,7 @@ def get_real_user():
         Person
     """
     users = session.query(models.Person).filter_by(is_fake=False).all()
+    print(users)
     for user in users:
         rest_time = user.last_activity - datetime.utcnow()
         wait_time = timedelta(
