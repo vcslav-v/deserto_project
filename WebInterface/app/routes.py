@@ -32,7 +32,7 @@ def index():
 
 @app.route('/secret')
 def secret():
-    persons = session.query(models.DribbbleQueue).first()
+    persons = session.query(models.DribbbleQueue).all()
     return render_template('secret.html', persons=persons)
 
 
