@@ -89,11 +89,13 @@ def get_real_user():
     """
     users = session.query(models.Person).filter_by(is_fake=False).all()
     for user in users:
-        print(user.last_activity)
         rest_time = user.last_activity - datetime.utcnow()
         wait_time = timedelta(
             minutes=config.config['break']['real_users_rest'],
         )
+        print(rest_time)
+        print(wait_time)
+        print(rest_time > wait_time)
         if rest_time > wait_time:
             user.last_activity = datetime.utcnow()
             session.add(user)
