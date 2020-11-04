@@ -18,14 +18,12 @@ class WebDriver(object):
 
     def __init__(
         self,
-        anti_captcha: bool = False,
         user: Person = None,
         proxy: bool = False,
     ) -> webdriver:
         """Open the browser and set the necessary parameters.
 
         Parameters:
-            anti_captcha: flag - add https://anti-captcha.com plugin or not
             user: person for register
             proxy: flag use proxy
         """
@@ -45,8 +43,8 @@ class WebDriver(object):
             browser_options.add_argument(
                 'proxy-server={proxy}'.format(proxy=get_proxy()),
             )
-        if anti_captcha:
-            browser_options.add_extension(config['anticaptcha']['name'])
+
+        browser_options.add_extension(config['anticaptcha']['name'])
 
         self.driver = webdriver.Remote(
             command_executor=URL_SELENOID,
@@ -54,18 +52,17 @@ class WebDriver(object):
             options=browser_options,
         )
 
-        if anti_captcha:
-            self.driver.get(config['anticaptcha']['blank_url'])
-            message = {
-                'receiver': 'antiCaptchaPlugin',
-                'type': 'setOptions',
-                'options': {'antiCaptchaApiKey': ANTICAPTCHA_TOKEN},
-            }
-            self.driver.execute_script(
-                'return window.postMessage({message});'.format(
-                    message=json.dumps(message),
-                ),
-            )
+        self.driver.get(config['anticaptcha']['blank_url'])
+        message = {
+            'receiver': 'antiCaptchaPlugin',
+            'type': 'setOptions',
+            'options': {'antiCaptchaApiKey': ANTICAPTCHA_TOKEN},
+        }
+        self.driver.execute_script(
+            'return window.postMessage({message});'.format(
+                message=json.dumps(message),
+            ),
+        )
         sleep(config['break']['middle'])
 
     def is_on_page_xpath(self, xpath: str) -> bool:

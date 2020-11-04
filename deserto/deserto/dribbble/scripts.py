@@ -17,7 +17,6 @@ def make_user(task: models.Task):
     user = data_base.make_fake_person()
 
     browser = web_browser.WebDriver(
-        anti_captcha=True,
         user=user,
         proxy=True,
     )

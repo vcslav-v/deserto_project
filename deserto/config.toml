@@ -27,6 +27,7 @@ blank_url = 'https://antcpt.com/blank.html'
     sign_in = 'https://dribbble.com/signup/new'
     recent = 'https://dribbble.com/shots/recent'
     profile = 'https://dribbble.com/account/profile'
+    new_session = 'https://dribbble.com/session/new'
 
     [dribbble.regex]
     email_confirm = '(http:\/\/email\.m\.dribbble.+?)"'
@@ -45,8 +46,18 @@ blank_url = 'https://antcpt.com/blank.html'
             email = '//*[@id="user_email"]'
             password = '//*[@id="user_password"]'
 
+
+        [dribbble.xpath.new_session]
+        submit='//input[@class="button form-sub"]'
+        check_done='//img[@class="profile-avatar"]'
+
+            [dribbble.xpath.new_session.fields]
+            login = '///input[@id="login"]'
+            password = '//input[@id="password"]'
+
         [dribbble.xpath.profile]
         userpic_submit = '//input[@value="Upload Now"]'
+        title_name = '//h1[contains(.,"{name}")]'
 
             [dribbble.xpath.profile.fields]
             userpic_path = '//*[@type="file"]'
