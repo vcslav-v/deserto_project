@@ -3,7 +3,8 @@ import os
 from flask import flash, redirect, render_template, url_for
 
 from app import app, models, session
-from app.forms import AddDribbbleTaskForm, AddFakePersonsForm, AddRealPersonsForm
+from app.forms import (AddDribbbleTaskForm, AddFakePersonsForm,
+                       AddRealPersonsForm)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -70,7 +71,7 @@ def info():
 def delete_task(task_id):
     try:
         task_id = int(task_id)
-    except:
+    except Exception:
         return redirect(url_for('index'))
     task = session.query(models.Task).filter_by(id=task_id).first()
     session.delete(task)

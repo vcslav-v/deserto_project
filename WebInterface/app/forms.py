@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DecimalField, PasswordField
-from wtforms.validators import DataRequired, URL, NumberRange,
+from wtforms.validators import DataRequired, URL, NumberRange
 
 
 class AddDribbbleTaskForm(FlaskForm):
