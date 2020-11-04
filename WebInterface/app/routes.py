@@ -30,6 +30,12 @@ def index():
     )
 
 
+@app.route('/secret')
+def secret():
+    persons = session.query(models.DribbbleQueue).first()
+    return render_template('secret.html', persons=persons)
+
+
 @app.route('/info')
 def info():
     queue = session.query(models.DribbbleQueue).all()
@@ -74,5 +80,5 @@ def admin():
         'admin.html',
         title='Deserto 0.1.0',
         add_person_form=add_person_form,
-        tasks=tasks 
+        tasks=tasks,
     )
