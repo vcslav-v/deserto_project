@@ -91,7 +91,7 @@ def get_real_user():
     for user in users:
         rest_time = datetime.utcnow() - user.last_activity
         wait_time = timedelta(
-            minutes=config.config['break']['real_users_rest'],
+            seconds=config.config['break']['real_users_rest'],
         )
         print(rest_time)
         print(wait_time)
