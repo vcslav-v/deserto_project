@@ -71,14 +71,16 @@ def get_dribbble_ready_browser(user) -> web_browser.WebDriver:
     """
     try:
         browser = web_browser.WebDriver(user=user, proxy=True)
-    except Exception:
+    except Exception as e:
+        print(e)
         return None
 
     try:
         browser.set_cookies(
             user, dribbble_cfg['url']['main'],
         )
-    except Exception:
+    except Exception as e:
+        print(e)
         browser.driver.close()
         return None
 
