@@ -52,7 +52,7 @@ blank_url = 'https://antcpt.com/blank.html'
         check_done='//img[@class="profile-avatar"]'
 
             [dribbble.xpath.new_session.fields]
-            login = '///input[@id="login"]'
+            login = '//input[@id="login"]'
             password = '//input[@id="password"]'
 
         [dribbble.xpath.profile]
