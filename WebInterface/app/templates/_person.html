@@ -4,6 +4,15 @@
             {{ person.name }}
         </th>
         <td>
+            {{ person.login }}
+        </td>
+        <td>
+            {{ person.is_fake }}
+        </td>
+        <td>
+            {{ person.last_activity }}
+        </td>
+        <td>
             <a class="btn btn btn-danger" href="/delete-person/{{ person.id }}" role="button">Delete</a>
         </td>
     </tr>

@@ -87,17 +87,13 @@ def get_real_user():
     Returns:
         Person
     """
-    user = session.query(
-        models.Person,
-    ).filter_by(
-        is_fake=False,
-    ).order_by(
-        models.Person.last_activity,
-    ).with_for_update().first()
-
-    rest_time = user.last_activity - datetime.utcnow()
-    wait_time = timedelta(minutes=config.config['break']['real_users_rest'])
-    if rest_time > wait_time:
-        user.last_activity = datetime.utcnow()
-        session.add(user)
-        return user
+    users = session.query(models.Person).filter_by(is_fake=False).all()
+    for user in users:
+        rest_time = user.last_activity - datetime.utcnow()
+        wait_time = timedelta(
+            minutes=config.config['break']['real_users_rest'],
+        )
+        if rest_time > wait_time:
+            user.last_activity = datetime.utcnow()
+            session.add(user)
+            return user
