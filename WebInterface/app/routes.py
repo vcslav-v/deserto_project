@@ -30,10 +30,10 @@ def index():
     )
 
 
-@app.route('/secret')
-def secret():
-    queue = session.query(models.DribbbleQueue).all()
-    return render_template('secret.html', queue=queue)
+# @app.route('/secret')
+# def secret():
+#     queue = session.query(models.DribbbleQueue).all()
+#     return render_template('secret.html', queue=queue)
 
 
 @app.route('/info')
