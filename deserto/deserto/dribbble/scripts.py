@@ -72,7 +72,7 @@ def do_real_user_flow(user: models.Person):
     Parameters:
         user: dribbble user
     """
-    browser = tools.get_dribbble_ready_browser(user)
+    browser = tools.get_dribbble_ready_browser(user, proxy=False)
     print(browser)
     if not browser:
         return

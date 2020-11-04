@@ -60,7 +60,7 @@ def save_cookies(
     data_base.session.add(person)
 
 
-def get_dribbble_ready_browser(user) -> web_browser.WebDriver:
+def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
     """Ready up browser with user cookies.
 
     Parameters:
@@ -70,7 +70,7 @@ def get_dribbble_ready_browser(user) -> web_browser.WebDriver:
         browser with set cookies user or None
     """
     try:
-        browser = web_browser.WebDriver(user=user, proxy=True)
+        browser = web_browser.WebDriver(user=user, proxy=proxy)
     except Exception as e:
         print(e)
         return None
