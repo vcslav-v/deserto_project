@@ -73,7 +73,6 @@ def do_real_user_flow(user: models.Person):
         user: dribbble user
     """
     browser = tools.get_dribbble_ready_browser(user, proxy=False)
-    print(browser)
     if not browser:
         return
     unliked_urls = web_scripts.get_unliked_shots(browser)

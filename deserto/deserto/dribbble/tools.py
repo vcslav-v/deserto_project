@@ -88,6 +88,7 @@ def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
         dribbble_cfg['url']['main'] + user.login,
     )
     xpath_check_session = dribbble_cfg['xpath']['new_session']['check_done']
+    print(browser.is_on_page_xpath(xpath_check_session))
     if browser.is_on_page_xpath(xpath_check_session):
         return browser
 
