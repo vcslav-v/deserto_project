@@ -98,6 +98,4 @@ def get_real_user():
         print(wait_time)
         print(rest_time > wait_time)
         if rest_time > wait_time:
-            user.last_activity = datetime.utcnow()
-            session.add(user)
             return user

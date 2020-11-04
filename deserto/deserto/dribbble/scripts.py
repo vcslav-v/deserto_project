@@ -4,6 +4,7 @@ from deserto import (data_base, mail_tools,  # noqa I001
                     models, resource_tools, web_browser)  # noqa WPS318
 from deserto.config import config
 from deserto.dribbble import tools, web_scripts
+from datetime import datetime
 
 dribbble_cfg = config['dribbble']
 
@@ -82,3 +83,5 @@ def do_real_user_flow(user: models.Person):
             counter=1,
         )
         web_scripts.like(browser, task)
+    user.last_activity = datetime.utcnow()
+    data_base.session.add(user)
