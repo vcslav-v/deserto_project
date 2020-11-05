@@ -19,10 +19,10 @@ def main():
         data_base.session.delete(task)
     data_base.session.commit()
 
-    user = data_base.get_real_user()
-    if user:
-        scripts.do_real_user_flow(user)
-    data_base.session.commit()
+    # user = data_base.get_real_user()
+    # if user:
+    #     scripts.do_real_user_flow(user)
+    # data_base.session.commit()
 
 
 if __name__ == '__main__':
