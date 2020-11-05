@@ -25,7 +25,7 @@ def index():
 
     return render_template(
         'index.html',
-        title='Deserto 0.1.0',
+        title='Deserto 0.2.0',
         add_dribbble_form=add_dribbble_form,
         tasks=tasks
     )
@@ -55,7 +55,7 @@ def add_acc():
         return redirect(url_for('add_acc'))
     return render_template(
         'add_acc.html',
-        title='Deserto 0.1.0',
+        title='Deserto 0.2.0',
         add_person_form=add_person_form,
         persons=persons,
     )
@@ -115,7 +115,7 @@ def admin():
         return redirect(url_for('index'))
     return render_template(
         'admin.html',
-        title='Deserto 0.1.0',
+        title='Deserto 0.2.0',
         add_person_form=add_person_form,
         tasks=tasks,
     )

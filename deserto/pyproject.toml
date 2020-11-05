@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deserto"
-version = "0.1.0"
+version = "0.2.0"
 description = "web bot for designers"
 authors = ["vcslav-v <vcslav.v@gmail.com>"]
 
