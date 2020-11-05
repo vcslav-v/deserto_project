@@ -22,6 +22,8 @@ imap = 'imap.gmail.com'
 [anticaptcha]
 name = 'anticaptcha.crx'
 blank_url = 'https://antcpt.com/blank.html'
+    [anticaptcha.xpath]
+    check = '//h1[contains(.,"AntCpt.com:blank")]'
 
 [dribbble]
     [dribbble.url]

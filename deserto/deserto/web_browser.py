@@ -58,12 +58,16 @@ class WebDriver(object):
             'type': 'setOptions',
             'options': {'antiCaptchaApiKey': ANTICAPTCHA_TOKEN},
         }
-        self.driver.execute_script(
-            'return window.postMessage({message});'.format(
-                message=json.dumps(message),
-            ),
-        )
-        sleep(config['break']['middle'])
+        if self.is_on_page_xpath(config['anticaptcha']['xpath']['check']):
+            self.driver.execute_script(
+                'return window.postMessage({message});'.format(
+                    message=json.dumps(message),
+                ),
+            )
+            sleep(config['break']['middle'])
+            self.is_successful = True
+        else:
+            self.is_successful = False
 
     def is_on_page_xpath(self, xpath: str) -> bool:
         """Find xpath on the current page.
