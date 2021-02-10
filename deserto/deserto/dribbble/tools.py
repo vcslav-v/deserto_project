@@ -102,5 +102,5 @@ def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
     )
     browser.click(dribbble_cfg['xpath']['new_session']['submit'])
 
-    if browser.wait_xpath(xpath_check_session):
-        return browser
+    # if browser.wait_xpath(xpath_check_session):
+    return browser
