@@ -33,7 +33,6 @@ class WebDriver(object):
             'enableVNC': True,
             'enableVideo': False,
         }
-        print('here')
 
         browser_options = webdriver.chrome.options.Options()
         if user and user.user_agent:

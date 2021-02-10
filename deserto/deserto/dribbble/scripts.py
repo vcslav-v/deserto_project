@@ -54,14 +54,16 @@ def like_and_comment(user: models.Person, task: models.Task):
         user: dribbble user
         task: dribbble task
     """
+    print('browser')
     browser = tools.get_dribbble_ready_browser(user)
     if not browser or not browser.is_successful:
         return
     elif not browser.is_successful:
         browser.driver.close()
         sleep(config['break']['long'])
-
+    print('is_successful')
     if task.is_liked_task:
+        print('like')
         web_scripts.like(browser, task)
     user.task.append(task)
     tools.save_cookies(user, browser.driver.get_cookies())
