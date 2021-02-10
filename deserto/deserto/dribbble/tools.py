@@ -77,6 +77,7 @@ def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
         return None
 
     try:
+        print(dribbble_cfg['url']['main'])
         browser.set_cookies(
             user, dribbble_cfg['url']['main'],
         )
