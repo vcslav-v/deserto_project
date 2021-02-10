@@ -46,11 +46,11 @@ class WebDriver(object):
 
         browser_options.add_extension(config['anticaptcha']['name'])
         print('Remote')
-        # self.driver = webdriver.Remote(
-        #     command_executor=URL_SELENOID,
-        #     desired_capabilities=capabilities,
-        #     options=browser_options,
-        # )
+        self.driver = webdriver.Remote(
+            command_executor=URL_SELENOID,
+            desired_capabilities=capabilities,
+            options=browser_options,
+        )
         print('anticaptcha')
         self.driver.get(config['anticaptcha']['blank_url'])
         message = {
