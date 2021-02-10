@@ -63,7 +63,7 @@ def like_and_comment(user: models.Person, task: models.Task):
     #     sleep(config['break']['long'])
     print('is_successful')
     if task.is_liked_task:
-        print('like')
+        print(task)
         web_scripts.like(browser, task)
     user.task.append(task)
     tools.save_cookies(user, browser.driver.get_cookies())
