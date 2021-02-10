@@ -44,7 +44,7 @@ class WebDriver(object):
                 'proxy-server={proxy}'.format(proxy=get_proxy()),
             )
 
-        browser_options.add_extension(config['anticaptcha']['name'])
+        # browser_options.add_extension(config['anticaptcha']['name'])
         print('Remote')
         self.driver = webdriver.Remote(
             command_executor=URL_SELENOID,
