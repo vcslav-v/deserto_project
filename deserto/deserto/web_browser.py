@@ -33,7 +33,7 @@ class WebDriver(object):
             'enableVNC': True,
             'enableVideo': False,
         }
-
+        print('options')
         browser_options = webdriver.chrome.options.Options()
         if user and user.user_agent:
             browser_options.add_argument(
@@ -45,13 +45,13 @@ class WebDriver(object):
             )
 
         browser_options.add_extension(config['anticaptcha']['name'])
-
+        print('Remote')
         self.driver = webdriver.Remote(
             command_executor=URL_SELENOID,
             desired_capabilities=capabilities,
             options=browser_options,
         )
-
+        print('anticaptcha')
         self.driver.get(config['anticaptcha']['blank_url'])
         message = {
             'receiver': 'antiCaptchaPlugin',
