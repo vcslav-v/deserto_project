@@ -7,30 +7,21 @@ LOGGING_CONFIG = {
         'standart': {
             'format': '%(asctime)s - %(levelname)s: %(message)s'
         },
-        'error': {
-            'format': '%(levelname)s: %(message)s'
-        },
     },
     'handlers': {
         'file_handler': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
-            'filename': 'log.log',
+            'filename': 'log.txt',
             'mode': 'a',
             'maxBytes': 10240,
             'backupCount': 0,
             'formatter': 'standart',
         },
-        'error_handler': {
-            'class': 'logging.StreamHandler',
-            'level': 'ERROR',
-            'stream': 'ext://sys.stderr',
-            'formatter': 'error',
-        },
     },
     'loggers': {
         'root': {
-            'handlers': ['file_handler', 'error_handler'],
+            'handlers': ['file_handler'],
             'level': 'DEBUG',
         }
     },
