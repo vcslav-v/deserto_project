@@ -76,15 +76,15 @@ def get_dribbble_ready_browser(user, proxy=True) -> web_browser.WebDriver:
         print(e)
         return None
 
-    try:
-        print(dribbble_cfg['url']['main'])
-        browser.set_cookies(
-            user, dribbble_cfg['url']['main'],
-        )
-    except Exception as e:
-        print(e)
-        browser.driver.close()
-        return None
+    # try:
+    #     print(dribbble_cfg['url']['main'])
+    #     browser.set_cookies(
+    #         user, dribbble_cfg['url']['main'],
+    #     )
+    # except Exception as e:
+    #     print(e)
+    #     browser.driver.close()
+    #     return None
     print('dribbble')
     browser.driver.get(
         dribbble_cfg['url']['main'] + user.login,
