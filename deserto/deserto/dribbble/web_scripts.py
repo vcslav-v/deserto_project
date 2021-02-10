@@ -6,7 +6,6 @@ from typing import List
 from deserto import (data_base, mail_tools,  # noqa I001
                      models, resource_tools, web_browser)  # noqa WPS318
 from deserto.config import config
-from deserto.logger import logger
 
 dribbble_cfg = config['dribbble']
 
@@ -67,11 +66,9 @@ def like(browser: web_browser.WebDriver, task: models.Task):
         browser: ready for dribbble
         task: like task
     """
-    logger.info('Заходим на {url}'.format(url=task.url))
     browser.driver.get(task.url)
     sleep(config['break']['short'])
     try:
-        logger.info('Лайкаем')
         browser.click(dribbble_cfg['xpath']['item']['like'])
     except Exception:
         task.counter += 1

@@ -6,7 +6,6 @@ from deserto.config import config
 from deserto.dribbble import tools, web_scripts
 from datetime import datetime
 from time import sleep
-from deserto.logger import logger
 
 dribbble_cfg = config['dribbble']
 
@@ -55,7 +54,6 @@ def like_and_comment(user: models.Person, task: models.Task):
         user: dribbble user
         task: dribbble task
     """
-    logger.info('Запускаем браузер')
     browser = tools.get_dribbble_ready_browser(user)
     if not browser or not browser.is_successful:
         return
@@ -64,7 +62,6 @@ def like_and_comment(user: models.Person, task: models.Task):
         sleep(config['break']['long'])
 
     if task.is_liked_task:
-        logger.info('Лайкаем')
         web_scripts.like(browser, task)
     user.task.append(task)
     tools.save_cookies(user, browser.driver.get_cookies())
