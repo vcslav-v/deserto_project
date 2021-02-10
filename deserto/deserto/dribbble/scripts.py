@@ -6,6 +6,7 @@ from deserto.config import config
 from deserto.dribbble import tools, web_scripts
 from datetime import datetime
 from time import sleep
+from deserto.logger import logger
 
 dribbble_cfg = config['dribbble']
 
@@ -17,12 +18,10 @@ def make_user(task: models.Task):
         task: for registration task
     """
     user = data_base.make_fake_person()
-
     browser = web_browser.WebDriver(
         user=user,
         proxy=True,
     )
-
     try:
         is_sign_in = web_scripts.sign_in(user, browser)
     except Exception:
@@ -56,6 +55,7 @@ def like_and_comment(user: models.Person, task: models.Task):
         user: dribbble user
         task: dribbble task
     """
+    logger.info('Запускаем браузер')
     browser = tools.get_dribbble_ready_browser(user)
     if not browser or not browser.is_successful:
         return
@@ -64,6 +64,7 @@ def like_and_comment(user: models.Person, task: models.Task):
         sleep(config['break']['long'])
 
     if task.is_liked_task:
+        logger.info('Лайкаем')
         web_scripts.like(browser, task)
     user.task.append(task)
     tools.save_cookies(user, browser.driver.get_cookies())
