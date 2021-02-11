@@ -29,7 +29,7 @@ class WebDriver(object):
         """
         capabilities = {
             'browserName': 'chrome',
-            'version': '86.0',
+            'version': '88.0',
             'enableVNC': True,
             'enableVideo': False,
         }
